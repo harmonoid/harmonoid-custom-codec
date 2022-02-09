@@ -13,7 +13,6 @@ ExternalProject_Add(mpv
         mujs
     GIT_REPOSITORY https://github.com/mpv-player/mpv.git
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${EXEC} git revert -n a86b0ffa6b9a3c0717a337d2e5544365b6cda2ad COMMAND ${EXEC} git apply ${CMAKE_CURRENT_SOURCE_DIR}/mpv-*.diff
     CONFIGURE_COMMAND ${EXEC}
         PKG_CONFIG=pkg-config
         TARGET=${TARGET_ARCH}

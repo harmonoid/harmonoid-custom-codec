@@ -30,23 +30,26 @@ jobs:
           git config --global user.email "saini123hitesh@gmail.com"
 
       - name: Configure CMake Build
+        continue-on-error: true
         run: |
           mkdir build64 && cd build64
           cmake -DTARGET_ARCH=x86_64-w64-mingw32 -G Ninja ..
 
       - name: Build Toolchain
+        continue-on-error: true
         run: |
           cd build64
           ninja gcc
 
       - name: Build MPV
+        continue-on-error: true
         run: |
           cd build64
           ninja mpv
-
-      - name: Tree
+      
+      - name: Logging
         run: |
-          tree
+          cat /home/runner/work/MPV-Windows-LGPL/MPV-Windows-LGPL/build64/packages/mpv-prefix/src/mpv-stamp/mpv-configure-*.log
 
       - name: Upload Binaries
         uses: softprops/action-gh-release@v1

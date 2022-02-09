@@ -16,7 +16,6 @@ ExternalProject_Add(ffmpeg
         opus
         speex
         vorbis
-	    avisynth-headers
         nvcodec-headers
         dav1d
     GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git

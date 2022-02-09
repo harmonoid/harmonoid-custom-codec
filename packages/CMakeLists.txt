@@ -134,7 +134,6 @@ function(force_meson_configure _name)
 endfunction()
 
 list(APPEND ep
-    gmp
     xz
     lzo
     uchardet
@@ -150,11 +149,8 @@ list(APPEND ep
     speex
     libmodplug
     libvpx
-    xvidcore
     libpng
     libdvdcss
-    libdvdread
-    libdvdnav
     libiconv
     luajit
     openal-soft
@@ -173,7 +169,6 @@ list(APPEND ep
     libxml2
     libmfx
     amf-headers
-    avisynth-headers
     nvcodec-headers
     libmysofa
     dav1d

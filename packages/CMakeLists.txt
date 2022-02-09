@@ -151,10 +151,7 @@ list(APPEND ep
     libmodplug
     libvpx
     xvidcore
-    game-music-emu
     libpng
-    x264
-    x265
     libdvdcss
     libdvdread
     libdvdnav
@@ -179,7 +176,6 @@ list(APPEND ep
     avisynth-headers
     nvcodec-headers
     libmysofa
-    aom
     dav1d
     libwebp
     vapoursynth
@@ -195,14 +191,10 @@ list(APPEND ep
     spirv-tools
     spirv-cross
     glslang
-    vulkan
     shaderc
     libepoxy
-    libplacebo
     curl
     mpv
-    mpv-release
-    mpv-packaging
     flac
     opusfile
     libopusenc

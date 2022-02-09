@@ -182,11 +182,7 @@ list(APPEND ep
     ffmpeg
     angle-headers
     mujs
-    spirv-headers
-    spirv-tools
-    spirv-cross
     glslang
-    shaderc
     libepoxy
     curl
     mpv

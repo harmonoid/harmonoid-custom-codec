@@ -31,7 +31,6 @@ ExternalProject_Add(mpv
         --enable-uchardet
         --enable-lcms2
         --enable-openal
-        --enable-spirv-cross
         --disable-libplacebo
         --disable-egl-angle-lib
         --prefix=${MINGW_INSTALL_PREFIX}

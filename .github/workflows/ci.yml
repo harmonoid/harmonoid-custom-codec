@@ -1,0 +1,62 @@
+name: MPV
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_linux:
+    name: MPV Windows
+    env:
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+
+      - name: Install Packages
+        run: |
+          sudo -E apt-get -qy update
+          sudo -E apt-get -m -y install build-essential checkinstall bison flex gettext git mercurial subversion ninja-build gyp cmake yasm nasm automake pkg-config libtool libtool-bin gcc-multilib g++-multilib libgmp-dev libmpfr-dev libmpc-dev libgcrypt-dev gperf ragel texinfo autopoint re2c asciidoc docbook2x unzip p7zip-full curl  python3-pip libjpeg-dev zlib1g-dev tree
+          sudo pip3 install rst2pdf meson mako
+
+      - name: Configure Git
+        run: |
+          git config --global core.fileMode false
+          git config --global user.name "Hitesh Kumar Saini"
+          git config --global user.email "saini123hitesh@gmail.com"
+
+      - name: Configure CMake Build
+        run: |
+          mkdir build64 && cd build64
+          cmake -DTARGET_ARCH=x86_64-w64-mingw32 -G Ninja ..
+
+      - name: Build Toolchain
+        run: |
+          cd build64
+          ninja gcc
+
+      - name: Build MPV
+        run: |
+          cd build64
+          ninja mpv
+
+      - name: Tree
+        run: |
+          tree
+
+      - name: Upload Binaries
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: false
+          body: ""
+          tag_name: "vnext"
+          files: |
+            build64/mpv-dev-x86_64*/*
+            build64/mpv-debug-x86_64*/*
+            build64/mpv-x86_64*/*
+          token: ${{ secrets.ACCESS_TOKEN }}

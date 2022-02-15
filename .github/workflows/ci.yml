@@ -46,10 +46,6 @@ jobs:
         run: |
           cd build64
           ninja mpv
-      
-      - name: Logging
-        run: |
-          cat /home/runner/work/MPV-Windows-LGPL/MPV-Windows-LGPL/build64/packages/mpv-prefix/src/mpv-stamp/mpv-configure-*.log
 
       - name: Upload Binaries
         uses: softprops/action-gh-release@v1

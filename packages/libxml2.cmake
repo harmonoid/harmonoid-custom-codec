@@ -1,6 +1,6 @@
 ExternalProject_Add(libxml2
     GIT_REPOSITORY https://gitlab.gnome.org/GNOME/libxml2.git
-    GIT_SHALLOW 1
+    GIT_TAG 57b3abd592373ad9e4aacdbf41e00612afb2ccf7
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}

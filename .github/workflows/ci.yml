@@ -20,14 +20,14 @@ jobs:
       - name: Install Packages
         run: |
           sudo -E apt-get -qy update
-          sudo -E apt-get -m -y install build-essential checkinstall bison flex gettext git mercurial subversion ninja-build gyp cmake yasm nasm automake pkg-config libtool libtool-bin gcc-multilib g++-multilib libgmp-dev libmpfr-dev libmpc-dev libgcrypt-dev gperf ragel texinfo autopoint re2c asciidoc docbook2x unzip p7zip-full curl  python3-pip libjpeg-dev zlib1g-dev tree
+          sudo -E apt-get -m -y install build-essential checkinstall bison flex gettext git mercurial subversion ninja-build gyp cmake yasm nasm automake pkg-config libtool libtool-bin gcc-multilib g++-multilib libgmp-dev libmpfr-dev libmpc-dev libgcrypt-dev gperf ragel texinfo autopoint re2c asciidoc docbook2x unzip p7zip-full curl  python3-pip libjpeg-dev zlib1g-dev po4a tree
           sudo pip3 install rst2pdf meson mako
 
       - name: Configure Git
         run: |
           git config --global core.fileMode false
           git config --global user.name "Hitesh Kumar Saini"
-          git config --global user.email "saini123hitesh@gmail.com"
+          git config --global user.email "alexmercerind@gmail.com"
 
       - name: Configure CMake Build
         continue-on-error: true
@@ -46,6 +46,21 @@ jobs:
         run: |
           cd build64
           ninja mpv
+
+      - name: Tree
+        continue-on-error: true
+        run: |
+          tree
+          
+      - name: FFmpeg Configure Logging
+        continue-on-error: true
+        run: |
+          cat /home/runner/work/harmonoid-custom-codec/harmonoid-custom-codec/build64/packages/ffmpeg-prefix/src/ffmpeg-stamp/ffmpeg-configure-*.log
+
+      - name: MPV Configure Logging
+        continue-on-error: true
+        run: |
+          cat /home/runner/work/harmonoid-custom-codec/harmonoid-custom-codec/build64/packages/mpv-prefix/src/mpv-stamp/mpv-configure-*.log
 
       - name: Upload Binaries
         uses: softprops/action-gh-release@v1
